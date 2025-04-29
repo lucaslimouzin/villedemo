@@ -3,20 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ville Lowpoly 3D</title>
+    <meta name="description" content="Ville 3D Lowpoly avec animation cinématique">
+    <title>Ville Lowpoly 3D - Animation Cinématique</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
+            background-color: #000;
+            font-family: Arial, sans-serif;
         }
         canvas {
             display: block;
+            width: 100%;
+            height: 100%;
+        }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <div id="info">
+        Ville 3D Lowpoly - Animation Cinématique
+    </div>
+    <div id="loading">Chargement...</div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="main.js"></script>
+    <script>
+        // Masquer le message de chargement une fois que la scène est prête
+        window.addEventListener('load', () => {
+            document.getElementById('loading').style.display = 'none';
+        });
+    </script>
 </body>
 </html> 
