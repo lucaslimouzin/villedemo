@@ -179,19 +179,41 @@ for (let i = 0; i < 15; i++) {
     scene.add(car);
 }
 
+// Variables pour l'animation cinématique
+let time = 0;
+const animationSpeed = 0.0005;
+const radius = 50;
+const heightVariation = 20;
+
+// Fonction pour l'animation cinématique de la caméra
+function cinematicCameraAnimation() {
+    time += animationSpeed;
+    
+    // Mouvement circulaire avec variation de hauteur
+    const x = Math.cos(time) * radius;
+    const z = Math.sin(time) * radius;
+    const y = 30 + Math.sin(time * 2) * heightVariation;
+    
+    // Position de la caméra
+    camera.position.set(x, y, z);
+    
+    // La caméra regarde toujours vers le centre
+    camera.lookAt(0, 0, 0);
+}
+
+// Animation avec mise à jour des contrôles
+function animate() {
+    requestAnimationFrame(animate);
+    cinematicCameraAnimation(); // Appel de l'animation cinématique
+    renderer.render(scene, camera);
+}
+
 // Gestion du redimensionnement de la fenêtre
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
-
-// Animation avec mise à jour des contrôles
-function animate() {
-    requestAnimationFrame(animate);
-    controls.update(); // Mise à jour des contrôles
-    renderer.render(scene, camera);
-}
 
 // Démarrage de l'animation
 animate(); 
